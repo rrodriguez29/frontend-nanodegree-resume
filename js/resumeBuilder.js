@@ -1,9 +1,6 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
-var skills = ["awesomeness","programming","teaching","js"];
-
-//$("#main").append(skills);
 
 var bio = {"name":"Ricardo",
   "role":"Web Developer",
@@ -19,19 +16,58 @@ var bio = {"name":"Ricardo",
   "bioPic":"images/fry.jpg"
 }
 
-$("#main").append(bio.name);
-
 var work = {};
 work.jobPosition = "Jr Web Developer";
 work.employer = "Hunter College";
 work.yearsWorked = "2013-2016";
 work.city = "New York";
 
-$("#main").append(work["jobPosition"]);
+var education = {
+  "schools":[
+    {
+      "name":"Hunter College",
+      "city":"New York, NY, USA",
+      "degree":"BA",
+      "major":["CompSci","Math"]
+    },
+    {
+      "name":"Temp College",
+      "city":"New York, NY, USA",
+      "degree":"MS",
+      "major":["CompSci"]
+    }
+  ]
+}
 
-var education = {};
-education["schoolAttended"] = "Hunter College";
-education["yearsEnrolled"] = "5";
-education["schoolLocation"] = "New York";
+var projects = {
+  "projects":[
+    {
+      "title":"Sample Project 1",
+      "dates":"2014",
+      "description":"Created video game that plays tetris using arduino uno",
+      "images":[
+        "images/arduino.png",
+        "images/arduinoFront.jpg"
+      ]
+    }
+  ]
+}
 
-$("#main").append(education.schoolAttended);
+if(bio.skills.length > 0){
+  $("#header").append(HTMLskillsStart);
+
+  var formattedSkill = HTMLskills.replace("%data%",bio.skills[0]);
+  $("#skills").append(formattedSkill);
+  formattedSkill = HTMLskills.replace("%data%",bio.skills[1]);
+  $("#skills").append(formattedSkill);
+  formattedSkill = HTMLskills.replace("%data%",bio.skills[2]);
+}
+
+for (var job in work.jobs) {
+  $("#workExperience").append(HTMLworkStart);
+  var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
+  var formattedTitle = HTMLworkTitle.replace("%data",work.jobs[job]title);
+  var formattedEmployerTitle = formattedEmployer + formattedTitle;
+
+  $(".work-entry:last").append(formattedEmployerTitle);
+}
